@@ -18300,7 +18300,7 @@ var Select = React.createClass({
 	},
 
 	clickedOutsideElement: function clickedOutsideElement(element, event) {
-		var eventTarget = event.currentTarget ? event.currentTarget : event.srcElement;
+		var eventTarget = event.target ? event.target : event.srcElement;
 		while (eventTarget != null) {
 			if (eventTarget === element) return false;
 			eventTarget = eventTarget.offsetParent;

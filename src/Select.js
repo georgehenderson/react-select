@@ -194,7 +194,7 @@ var Select = React.createClass({
 	},
 
 	clickedOutsideElement: function(element, event) {
-		var eventTarget = (event.target) ? event.target : event.srcElement;
+		var eventTarget = (event.currentTarget) ? event.currentTarget : event.srcElement;
 		while (eventTarget != null) {
 			if (eventTarget === element) return false;
 			eventTarget = eventTarget.offsetParent;
@@ -448,14 +448,14 @@ var Select = React.createClass({
 	handleInputChange: function(event) {
 		// assign an internal variable because we need to use
 		// the latest value before setState() has completed.
-		this._optionsFilterString = event.target.value;
+		this._optionsFilterString = event.currentTarget.value;
 
 		if (this.props.asyncOptions) {
 			this.setState({
 				isLoading: true,
-				inputValue: event.target.value
+				inputValue: event.currentTarget.value
 			});
-			this.loadAsyncOptions(event.target.value, {
+			this.loadAsyncOptions(event.currentTarget.value, {
 				isLoading: false,
 				isOpen: true
 			}, this._bindCloseMenuIfClickedOutside);
@@ -463,7 +463,7 @@ var Select = React.createClass({
 			var filteredOptions = this.filterOptions(this.state.options);
 			this.setState({
 				isOpen: true,
-				inputValue: event.target.value,
+				inputValue: event.currentTarget.value,
 				filteredOptions: filteredOptions,
 				focusedOption: this._getNewFocusedOption(filteredOptions)
 			}, this._bindCloseMenuIfClickedOutside);
